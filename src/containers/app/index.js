@@ -1,12 +1,17 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import styled from "styled-components";
 
-import "./App.css";
-import { search } from "./redux/animes/actions";
-import { getAnimes, getIsFetching } from "./redux/animes/selectors";
+import { search } from "../../redux/animes/actions";
+import { getAnimes, getIsFetching } from "../../redux/animes/selectors";
+import Gallery from "../../components/gallery";
+import SearchBar from "../../components/search-bar";
+import Header from "../../components/header";
 
-import Gallery from "./components/gallery";
+const StyledTitle = styled.h1`
+  color: #fff;
+`;
 
 class App extends Component {
   constructor(props) {
@@ -37,18 +42,14 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Anime search</h1>
-          <form onSubmit={this.handleSearch}>
-            <input
-              type="text"
-              placeholder="Digite o nome do anime"
-              value={this.state.searchTerm}
-              onChange={this.handleChange}
-            />
-            <button type="submit">Search</button>
-          </form>
-        </header>
+        <Header>
+          <StyledTitle>Anime search</StyledTitle>
+          <SearchBar
+            onSubmit={this.handleSearch}
+            onChange={this.handleChange}
+            searchTerm={this.state.searchTerm}
+          />
+        </Header>
 
         <Gallery
           isFetching={this.props.isFetching}
