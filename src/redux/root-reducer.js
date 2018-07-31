@@ -1,5 +1,7 @@
 import { combineReducers } from "redux";
 
-const rootReducer = combineReducers({});
+import animes from "./animes/reducer";
+
+const rootReducer = combineReducers({ animes });
 
 export default rootReducer;
