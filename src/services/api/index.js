@@ -8,10 +8,6 @@ function mountError({ response, data }) {
   return Promise.reject(new Error(errorMessage));
 }
 
-function formatRequestPayload(payload) {
-  return deepMapKeys(payload, _.snakeCase);
-}
-
 function formatResponsePayload(payload) {
   return deepMapKeys(payload, _.camelCase);
 }
