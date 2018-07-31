@@ -29,6 +29,22 @@ export function allIds(state = allIdsInitialState, action) {
   }
 }
 
-const searchReducer = combineReducers({ byId, allIds });
+export const requestInitialState = {
+  isFetching: false
+};
+
+export function request(state = requestInitialState, action) {
+  switch (action.type) {
+    case SEARCH_REQUESTED:
+      return { isFetching: true };
+    case SEARCH_SUCCEEDED:
+    case SEARCH_FAILED:
+      return { isFetching: false };
+    default:
+      return state;
+  }
+}
+
+const searchReducer = combineReducers({ byId, allIds, request });
 
 export default searchReducer;
