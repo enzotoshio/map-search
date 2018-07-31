@@ -7,7 +7,7 @@ export function byId(state = byIdInitialState, action) {
   switch (action.type) {
     case SEARCH_SUCCEEDED:
       const { animes } = action.payload.entities;
-
+      debugger;
       return { ...state, ...animes };
 
     default:

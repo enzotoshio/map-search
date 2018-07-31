@@ -2,14 +2,15 @@ import { normalize } from "normalizr";
 
 import { SEARCH_SUCCEEDED, SEARCH_REQUESTED } from "./types";
 import { arrayOfAnimes } from "./schema";
+import { get } from "../../services/api";
 
 export function search(term) {
   return dispatch => {
     dispatch(searchRequested(term));
 
-    return fetch(`https://api.jikan.moe/search/manga/${term}`)
-      .then(response => response.json())
-      .then(json => dispatch(searchSucceeded(json)));
+    return get({ route: `/search/manga/${term}` }).then(response =>
+      dispatch(searchSucceeded(response.result))
+    );
   };
 }
 
