@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import _ from 'lodash';
 
-import { search } from '../../redux/addresses/actions';
+import { searchByCEP } from '../../redux/addresses/actions';
 import {
   getAddressesByCEP,
   getIsFetching,
@@ -130,7 +130,7 @@ App.propTypes = {
 };
 
 const mapDispatchToProps = {
-  boundSearch: search
+  boundSearch: searchByCEP
 };
 
 const mapStateToProps = state => ({

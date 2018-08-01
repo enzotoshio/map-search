@@ -53,6 +53,6 @@ const StyledSpinner = styled.div`
   }
 `;
 
-export default function AnimatedSpinner() {
+export default function Spinner() {
   return <StyledSpinner>Loading</StyledSpinner>;
 }

@@ -8,35 +8,35 @@ import {
 import { address as addressSchema } from './schema';
 import { get, getJsonP } from '../../services/api';
 
-function searchRequested() {
+export function searchByCEPRequested() {
   return {
     type: SEARCH_BY_CEP_REQUESTED
   };
 }
 
-function searchFailed(errorMessage) {
+export function searchByCEPFailed(errorMessage) {
   return {
     type: SEARCH_BY_CEP_FAILED,
     payload: { errorMessage }
   };
 }
 
-function searchSucceeded(payload) {
+export function searchByCEPSucceeded(payload) {
   const normalizedPayload = normalize(payload, addressSchema);
 
   return { type: SEARCH_BY_CEP_SUCCEEDED, payload: normalizedPayload };
 }
 
-export function search(term) {
+export function searchByCEP(term) {
   return async dispatch => {
-    dispatch(searchRequested(term));
+    dispatch(searchByCEPRequested(term));
 
     const address = await getJsonP(
       `${process.env.REACT_APP_CEP_API_URL}/${term}/json`
     );
 
     if (address.erro) {
-      dispatch(searchFailed('CEP não encontrado'));
+      dispatch(searchByCEPFailed('CEP não encontrado'));
       return;
     }
 
@@ -47,10 +47,11 @@ export function search(term) {
       geometry: { location }
     } = results[0];
 
-    dispatch(searchSucceeded({ ...address, ...location }));
+    dispatch(searchByCEPSucceeded({ ...address, ...location }));
   };
 }
 
 export default {
-  search
+  searchByCEP,
+  searchByCEPRequested
 };
