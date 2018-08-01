@@ -1,5 +1,5 @@
-import React from "react";
-import styled, { css } from "styled-components";
+import React from 'react';
+import styled, { css } from 'styled-components';
 
 const StyledMapContainer = styled.div`
   display: grid;
@@ -14,7 +14,7 @@ const StyledMapContainer = styled.div`
 `;
 
 const StyledAddressLine = styled.p`
-  line-height: ${props => (props.title ? "2em" : "1.5em")};
+  line-height: ${props => (props.title ? '2em' : '1.5em')};
   ${props =>
     props.title &&
     css`

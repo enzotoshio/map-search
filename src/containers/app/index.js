@@ -1,16 +1,16 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import styled from "styled-components";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
-import { search } from "../../redux/addresses/actions";
+import { search } from '../../redux/addresses/actions';
 import {
   getAddressesByCEP,
   getIsFetching,
   getSucceeded
-} from "../../redux/addresses/selectors";
-import SearchBar from "../../components/search-bar";
-import Map from "../../components/map";
+} from '../../redux/addresses/selectors';
+import SearchBar from '../../components/search-bar';
+import Map from '../../components/map';
 
 const StyledTitle = styled.h1`
   font-size: 2em;
@@ -34,7 +34,7 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { openMap: false, searchTerm: "" };
+    this.state = { openMap: false, searchTerm: '' };
 
     this.handleSearch = this.handleSearch.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -51,7 +51,7 @@ class App extends Component {
   }
 
   closeMap() {
-    this.setState({ openMap: false, searchTerm: "" });
+    this.setState({ openMap: false, searchTerm: '' });
   }
 
   render() {

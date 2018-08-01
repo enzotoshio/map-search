@@ -2,8 +2,8 @@ import {
   SEARCH_BY_CEP_REQUESTED,
   SEARCH_BY_CEP_SUCCEEDED,
   SEARCH_BY_CEP_FAILED
-} from "./types";
-import { combineReducers } from "redux";
+} from './types';
+import { combineReducers } from 'redux';
 
 const byIdInitialState = null;
 

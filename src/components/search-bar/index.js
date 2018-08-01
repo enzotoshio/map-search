@@ -1,7 +1,7 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
-import Button from "../button";
+import Button from '../button';
 
 const StyledInput = styled.input`
   border-radius: 3px;
@@ -35,7 +35,7 @@ class SearchBar extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     // this.handleChange = this.handleChange.bind(this);
 
-    this.state = { searchTerm: "" };
+    this.state = { searchTerm: '' };
   }
 
   // handleChange(event) {
@@ -45,7 +45,7 @@ class SearchBar extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
 
-    if (this.props.searchTerm === "") return;
+    if (this.props.searchTerm === '') return;
 
     this.props.onSubmit();
   }
