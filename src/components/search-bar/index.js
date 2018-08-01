@@ -74,7 +74,7 @@ class SearchBar extends React.Component {
           <StyledLabel>CEP</StyledLabel>
           <StyledInput
             type="text"
-            placeholder="Type the anime name"
+            placeholder="Type the formated CEP (00000-000)"
             value={searchTerm}
             onChange={this.handleChange}
           />
