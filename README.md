@@ -10,6 +10,10 @@ This project enables you to search addresses by CEP and it uses:
 
 You should have **node v8.x** and **yarn** installed in your machine.
 
+You should also run:
+
+- `yarn install`
+
 ## Available Scripts
 
 In the project directory, you can run:
