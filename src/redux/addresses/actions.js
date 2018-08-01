@@ -1,13 +1,23 @@
 import { normalize } from 'normalizr';
 
-import { SEARCH_BY_CEP_SUCCEEDED, SEARCH_BY_CEP_REQUESTED } from './types';
+import {
+  SEARCH_BY_CEP_SUCCEEDED,
+  SEARCH_BY_CEP_REQUESTED,
+  SEARCH_BY_CEP_FAILED
+} from './types';
 import { address as addressSchema } from './schema';
 import { get } from '../../services/api';
 
-function searchRequested(term) {
+function searchRequested() {
   return {
-    type: SEARCH_BY_CEP_REQUESTED,
-    payload: { term }
+    type: SEARCH_BY_CEP_REQUESTED
+  };
+}
+
+function searchFailed(errorMessage) {
+  return {
+    type: SEARCH_BY_CEP_FAILED,
+    payload: { errorMessage }
   };
 }
 
@@ -24,6 +34,12 @@ export function search(term) {
     const address = await get(
       `${process.env.REACT_APP_CEP_API_URL}/${term}/json`
     );
+
+    if (address.erro) {
+      dispatch(searchFailed('CEP não encontrado'));
+      return;
+    }
+
     const { results } = await get(
       `${process.env.REACT_APP_MAPS_API_URL}${term},%20Brazil`
     );

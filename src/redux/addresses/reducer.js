@@ -35,6 +35,21 @@ export function allIds(state = allIdsInitialState, action) {
   }
 }
 
+const errorMessageInitalState = null;
+
+export function errorMessage(state = errorMessageInitalState, action) {
+  switch (action.type) {
+    case SEARCH_BY_CEP_SUCCEEDED:
+      return null;
+
+    case SEARCH_BY_CEP_FAILED:
+      return action.payload.errorMessage;
+
+    default:
+      return state;
+  }
+}
+
 export const requestInitialState = { isFetching: false, succeeded: false };
 
 export function request(state = requestInitialState, action) {
@@ -50,6 +65,6 @@ export function request(state = requestInitialState, action) {
   }
 }
 
-const searchReducer = combineReducers({ byCEP, allIds, request });
+const searchReducer = combineReducers({ byCEP, allIds, request, errorMessage });
 
 export default searchReducer;

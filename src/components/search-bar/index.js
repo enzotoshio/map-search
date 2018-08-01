@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 
 import Button from '../button';
 
@@ -29,11 +30,28 @@ const StyledLabel = styled.label`
   margin-right: 15px;
 `;
 
+const StyledErrorMessage = styled.p`
+  font-size: 0.7em;
+  color: red;
+  margin-top: 10px;
+`;
+
 class SearchBar extends React.Component {
   constructor(props) {
     super(props);
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+
+    this.state = { isValidSearchTerm: false };
+  }
+
+  handleChange(event) {
+    const isValidSearchTerm = event.target.value.match(/^[0-9]{5}-[0-9]{3}$/gm);
+
+    this.setState({ isValidSearchTerm });
+
+    this.props.onChange(event);
   }
 
   handleSubmit(event) {
@@ -45,6 +63,9 @@ class SearchBar extends React.Component {
   }
 
   render() {
+    const { isValidSearchTerm } = this.state;
+    const { searchTerm, errorMessage } = this.props;
+
     return (
       <div>
         <StyledTitle>Consultar</StyledTitle>
@@ -53,20 +74,32 @@ class SearchBar extends React.Component {
           <StyledInput
             type="text"
             placeholder="Type the anime name"
-            value={this.props.searchTerm}
-            onChange={this.props.onChange}
+            value={searchTerm}
+            onChange={this.handleChange}
           />
-          <Button type="submit">Search</Button>
+          <Button type="submit" disabled={!isValidSearchTerm}>
+            Search
+          </Button>
         </StyledForm>
+        {!isValidSearchTerm &&
+          searchTerm && <StyledErrorMessage>CEP inválido</StyledErrorMessage>}
+        {!_.isEmpty(errorMessage) && (
+          <StyledErrorMessage>{errorMessage}</StyledErrorMessage>
+        )}
       </div>
     );
   }
 }
 
+SearchBar.defaultProps = {
+  errorMessage: ''
+};
+
 SearchBar.propTypes = {
   searchTerm: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-  onSubmit: PropTypes.func.isRequired
+  onSubmit: PropTypes.func.isRequired,
+  errorMessage: PropTypes.string
 };
 
 export default SearchBar;

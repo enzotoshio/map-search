@@ -8,7 +8,8 @@ import { search } from '../../redux/addresses/actions';
 import {
   getAddressesByCEP,
   getIsFetching,
-  getSucceeded
+  getSucceeded,
+  getErrorMessage
 } from '../../redux/addresses/selectors';
 import SearchBar from '../../components/search-bar';
 import Map from '../../components/map';
@@ -59,7 +60,7 @@ class App extends Component {
   }
 
   render() {
-    const { addresses, isFetching, succeeded } = this.props;
+    const { addresses, isFetching, succeeded, errorMessage } = this.props;
     const searchedAddress =
       addresses && this.state.searchTerm && addresses[this.state.searchTerm]
         ? addresses[this.state.searchTerm]
@@ -83,6 +84,7 @@ class App extends Component {
             onChange={this.handleChange}
             searchTerm={this.state.searchTerm}
             onSubmit={this.handleSearch}
+            errorMessage={errorMessage}
           />
         </StyledSearchBarContainer>
 
@@ -107,7 +109,8 @@ class App extends Component {
 }
 
 App.defaultProps = {
-  addresses: {}
+  addresses: {},
+  errorMessage: ''
 };
 
 App.propTypes = {
@@ -120,6 +123,7 @@ App.propTypes = {
     uf: PropTypes.string,
     cep: PropTypes.string
   }),
+  errorMessage: PropTypes.string,
   boundSearch: PropTypes.func.isRequired,
   succeeded: PropTypes.bool.isRequired,
   isFetching: PropTypes.bool.isRequired
@@ -132,7 +136,8 @@ const mapDispatchToProps = {
 const mapStateToProps = state => ({
   addresses: getAddressesByCEP(state),
   isFetching: getIsFetching(state),
-  succeeded: getSucceeded(state)
+  succeeded: getSucceeded(state),
+  errorMessage: getErrorMessage(state)
 });
 
 export default connect(
