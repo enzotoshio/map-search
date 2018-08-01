@@ -1,7 +1,7 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
-import Spinner from "../spinner";
+import Spinner from '../spinner';
 
 const StyledGallery = styled.div`
   display: grid;
@@ -59,10 +59,18 @@ export function Gallery(props) {
 }
 
 export default function GalleryWithCondition(props) {
-  if (!props.fetched) return <p>Select an anime</p>;
+  if (!props.fetched) return (
+<p>
+Select an anime
+</p>
+);
 
   if (!props.isFetching && props.fetched && props.addresses.length === 0)
-    return <p>No anime found</p>;
+    return (
+<p>
+No anime found
+</p>
+);
 
   if (props.isFetching) return <Spinner />;
 

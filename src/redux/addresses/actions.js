@@ -1,8 +1,8 @@
-import { normalize } from "normalizr";
+import { normalize } from 'normalizr';
 
-import { SEARCH_BY_CEP_SUCCEEDED, SEARCH_BY_CEP_REQUESTED } from "./types";
-import { address } from "./schema";
-import { get } from "../../services/api";
+import { SEARCH_BY_CEP_SUCCEEDED, SEARCH_BY_CEP_REQUESTED } from './types';
+import { address } from './schema';
+import { get } from '../../services/api';
 
 export function search(term) {
   return async dispatch => {

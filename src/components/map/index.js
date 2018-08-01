@@ -46,13 +46,26 @@ export default function Map({
   return (
     <StyledMapContainer>
       <div>
-        <StyledAddressLine title="true">{logradouro}dasdasd</StyledAddressLine>
-        <StyledAddressLine>{bairro}sdada</StyledAddressLine>
-        <StyledAddressLine>
-          {localidade}asdda
-          {uf && <span>, {uf}</span>}
+        <StyledAddressLine title="true">
+          {logradouro}
+          dasdasd
         </StyledAddressLine>
-        <StyledAddressLine>{cep}adsdadad</StyledAddressLine>
+        <StyledAddressLine>
+          {bairro}
+          sdada
+        </StyledAddressLine>
+        <StyledAddressLine>
+          {localidade}
+          asdda
+          {uf && (
+<span>
+,{uf}</span>
+)}
+        </StyledAddressLine>
+        <StyledAddressLine>
+          {cep}
+          adsdadad
+        </StyledAddressLine>
       </div>
       <StyledCloseButton onClick={onClose}>X</StyledCloseButton>
       <StyledMap

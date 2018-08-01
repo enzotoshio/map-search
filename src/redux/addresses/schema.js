@@ -1,3 +1,3 @@
-import { schema } from "normalizr";
+import { schema } from 'normalizr';
 
-export const address = new schema.Entity("address", {}, { idAttribute: "cep" });
+export const address = new schema.Entity('address', {}, { idAttribute: 'cep' });

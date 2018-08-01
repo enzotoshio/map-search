@@ -1,9 +1,9 @@
+import { combineReducers } from 'redux';
 import {
   SEARCH_BY_CEP_REQUESTED,
   SEARCH_BY_CEP_SUCCEEDED,
   SEARCH_BY_CEP_FAILED
 } from './types';
-import { combineReducers } from 'redux';
 
 const byIdInitialState = null;
 
@@ -11,7 +11,6 @@ export function byCEP(state = byIdInitialState, action) {
   switch (action.type) {
     case SEARCH_BY_CEP_SUCCEEDED:
       const { address } = action.payload.entities;
-      debugger;
 
       return { ...state, ...address };
 

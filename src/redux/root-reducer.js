@@ -1,6 +1,6 @@
-import { combineReducers } from "redux";
+import { combineReducers } from 'redux';
 
-import addresses from "./addresses/reducer";
+import addresses from './addresses/reducer';
 
 const rootReducer = combineReducers({ addresses });
 

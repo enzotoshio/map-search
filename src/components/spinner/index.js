@@ -1,5 +1,5 @@
-import React from "react";
-import styled, { keyframes } from "styled-components";
+import React from 'react';
+import styled, { keyframes } from 'styled-components';
 
 const animation = keyframes`
   0%,
@@ -40,7 +40,7 @@ const StyledSpinner = styled.div`
     height: 4em;
     position: absolute;
     top: 0;
-    content: "";
+    content: '';
   }
 
   &:before {
@@ -54,5 +54,9 @@ const StyledSpinner = styled.div`
 `;
 
 export default function AnimatedSpinner() {
-  return <StyledSpinner>Loading</StyledSpinner>;
+  return (
+<StyledSpinner>
+Loading
+</StyledSpinner>
+);
 }

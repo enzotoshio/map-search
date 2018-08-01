@@ -1,5 +1,5 @@
-import _ from "lodash";
-import deepMapKeys from "deep-map-keys";
+import _ from 'lodash';
+import deepMapKeys from 'deep-map-keys';
 
 function mountError({ response, data }) {
   const errorMessage = `${response.status} - 
@@ -24,7 +24,7 @@ async function handleResponse(response) {
 
 export async function get(url) {
   const response = await fetch(url, {
-    method: "GET"
+    method: 'GET'
   });
 
   return handleResponse(response);
