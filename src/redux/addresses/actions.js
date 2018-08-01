@@ -43,9 +43,8 @@ export function searchByCEP(term) {
     const { results } = await get(
       `${process.env.REACT_APP_MAPS_API_URL}${term},%20Brazil`
     );
-    const {
-      geometry: { location }
-    } = results[0];
+    const { geometry } = results[0] || {};
+    const { location } = geometry || {};
 
     dispatch(searchByCEPSucceeded({ ...address, ...location }));
   };
