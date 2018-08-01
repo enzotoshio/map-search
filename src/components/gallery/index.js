@@ -44,7 +44,7 @@ const StyledGalleryItemLabel = styled.div`
 export function Gallery(props) {
   return (
     <StyledGallery>
-      {props.animes.map(anime => (
+      {props.addresses.map(anime => (
         <StyledGalleryItem
           imageUrl={anime.imageUrl}
           key={anime.malId}
@@ -61,7 +61,7 @@ export function Gallery(props) {
 export default function GalleryWithCondition(props) {
   if (!props.fetched) return <p>Select an anime</p>;
 
-  if (!props.isFetching && props.fetched && props.animes.length === 0)
+  if (!props.isFetching && props.fetched && props.addresses.length === 0)
     return <p>No anime found</p>;
 
   if (props.isFetching) return <Spinner />;

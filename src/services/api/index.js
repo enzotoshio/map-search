@@ -22,13 +22,7 @@ async function handleResponse(response) {
   return mountError({ response, data: responseData });
 }
 
-function mountUrl(route, query = "") {
-  return `${process.env.REACT_APP_API_URL}${route}?${query}`;
-}
-
-export async function get({ route, query }) {
-  const url = mountUrl(route, query);
-
+export async function get(url) {
   const response = await fetch(url, {
     method: "GET"
   });
