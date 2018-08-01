@@ -6,7 +6,7 @@ import {
   SEARCH_BY_CEP_FAILED
 } from './types';
 import { address as addressSchema } from './schema';
-import { get } from '../../services/api';
+import { get, getJsonP } from '../../services/api';
 
 function searchRequested() {
   return {
@@ -31,7 +31,7 @@ export function search(term) {
   return async dispatch => {
     dispatch(searchRequested(term));
 
-    const address = await get(
+    const address = await getJsonP(
       `${process.env.REACT_APP_CEP_API_URL}/${term}/json`
     );
 
