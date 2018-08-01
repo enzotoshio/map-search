@@ -50,12 +50,13 @@ export default function Map({
         <StyledAddressLine title="true">{logradouro}</StyledAddressLine>
         <StyledAddressLine>{bairro}</StyledAddressLine>
         <StyledAddressLine>
-          {localidade}
-          {uf && <span>,{uf}</span>}
+          {localidade},{uf}
         </StyledAddressLine>
         <StyledAddressLine>{cep}</StyledAddressLine>
       </div>
-      <StyledCloseButton onClick={onClose}>X</StyledCloseButton>
+      <StyledCloseButton onClick={onClose} className="close-button">
+        X
+      </StyledCloseButton>
       <StyledMap
         src={`https://maps.googleapis.com/maps/api/staticmap?center=${geolocation}&zoom=13&size=540x300&maptype=roadmap&markers=color:blue%7Clabel:S%7C${geolocation}&key=AIzaSyB55YTpITUlbCiTvv-cIPNERBYfXDNKiEw`}
       />
