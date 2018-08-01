@@ -1,8 +1,21 @@
 import { normalize } from 'normalizr';
 
 import { SEARCH_BY_CEP_SUCCEEDED, SEARCH_BY_CEP_REQUESTED } from './types';
-import { address } from './schema';
+import { address as addressSchema } from './schema';
 import { get } from '../../services/api';
+
+function searchRequested(term) {
+  return {
+    type: SEARCH_BY_CEP_REQUESTED,
+    payload: { term }
+  };
+}
+
+function searchSucceeded(payload) {
+  const normalizedPayload = normalize(payload, addressSchema);
+
+  return { type: SEARCH_BY_CEP_SUCCEEDED, payload: normalizedPayload };
+}
 
 export function search(term) {
   return async dispatch => {
@@ -19,19 +32,6 @@ export function search(term) {
     } = results[0];
 
     dispatch(searchSucceeded({ ...address, ...location }));
-  };
-}
-
-function searchSucceeded(payload) {
-  const normalizedPayload = normalize(payload, address);
-
-  return { type: SEARCH_BY_CEP_SUCCEEDED, payload: normalizedPayload };
-}
-
-function searchRequested(term) {
-  return {
-    type: SEARCH_BY_CEP_REQUESTED,
-    payload: { term }
   };
 }
 

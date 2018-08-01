@@ -9,10 +9,11 @@ const byIdInitialState = null;
 
 export function byCEP(state = byIdInitialState, action) {
   switch (action.type) {
-    case SEARCH_BY_CEP_SUCCEEDED:
+    case SEARCH_BY_CEP_SUCCEEDED: {
       const { address } = action.payload.entities;
 
       return { ...state, ...address };
+    }
 
     default:
       return state;
@@ -23,10 +24,11 @@ const allIdsInitialState = [];
 
 export function allIds(state = allIdsInitialState, action) {
   switch (action.type) {
-    case SEARCH_BY_CEP_SUCCEEDED:
+    case SEARCH_BY_CEP_SUCCEEDED: {
       const ids = action.payload.result;
 
       return [...ids];
+    }
 
     default:
       return state;

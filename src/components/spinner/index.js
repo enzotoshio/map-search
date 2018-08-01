@@ -54,9 +54,5 @@ const StyledSpinner = styled.div`
 `;
 
 export default function AnimatedSpinner() {
-  return (
-<StyledSpinner>
-Loading
-</StyledSpinner>
-);
+  return <StyledSpinner>Loading</StyledSpinner>;
 }

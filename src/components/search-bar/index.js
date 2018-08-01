@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 import Button from '../button';
 
@@ -33,14 +34,7 @@ class SearchBar extends React.Component {
     super(props);
 
     this.handleSubmit = this.handleSubmit.bind(this);
-    // this.handleChange = this.handleChange.bind(this);
-
-    this.state = { searchTerm: '' };
   }
-
-  // handleChange(event) {
-  //   this.setState({ searchTerm: event.target.value });
-  // }
 
   handleSubmit(event) {
     event.preventDefault();
@@ -68,5 +62,11 @@ class SearchBar extends React.Component {
     );
   }
 }
+
+SearchBar.propTypes = {
+  searchTerm: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired
+};
 
 export default SearchBar;

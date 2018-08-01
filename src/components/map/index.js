@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import PropTypes from 'prop-types';
 
 const StyledMapContainer = styled.div`
   display: grid;
@@ -46,26 +47,13 @@ export default function Map({
   return (
     <StyledMapContainer>
       <div>
-        <StyledAddressLine title="true">
-          {logradouro}
-          dasdasd
-        </StyledAddressLine>
-        <StyledAddressLine>
-          {bairro}
-          sdada
-        </StyledAddressLine>
+        <StyledAddressLine title="true">{logradouro}</StyledAddressLine>
+        <StyledAddressLine>{bairro}</StyledAddressLine>
         <StyledAddressLine>
           {localidade}
-          asdda
-          {uf && (
-<span>
-,{uf}</span>
-)}
+          {uf && <span>,{uf}</span>}
         </StyledAddressLine>
-        <StyledAddressLine>
-          {cep}
-          adsdadad
-        </StyledAddressLine>
+        <StyledAddressLine>{cep}</StyledAddressLine>
       </div>
       <StyledCloseButton onClick={onClose}>X</StyledCloseButton>
       <StyledMap
@@ -74,3 +62,13 @@ export default function Map({
     </StyledMapContainer>
   );
 }
+
+Map.propTypes = {
+  logradouro: PropTypes.string.isRequired,
+  bairro: PropTypes.string.isRequired,
+  localidade: PropTypes.string.isRequired,
+  cep: PropTypes.string.isRequired,
+  uf: PropTypes.string.isRequired,
+  geolocation: PropTypes.string.isRequired,
+  onClose: PropTypes.func.isRequired
+};

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import _ from 'lodash';
 
 import { search } from '../../redux/addresses/actions';
 import {
@@ -11,6 +12,7 @@ import {
 } from '../../redux/addresses/selectors';
 import SearchBar from '../../components/search-bar';
 import Map from '../../components/map';
+import Spinner from '../../components/spinner';
 
 const StyledTitle = styled.h1`
   font-size: 2em;
@@ -42,12 +44,14 @@ class App extends Component {
   }
 
   handleSearch() {
-    this.props.boundSearch(this.state.searchTerm);
+    const { searchTerm } = this.state;
+
+    this.props.boundSearch(searchTerm);
     this.setState({ openMap: true });
   }
 
-  handleChange(event) {
-    this.setState({ searchTerm: event.target.value });
+  handleChange({ target }) {
+    this.setState({ searchTerm: target.value });
   }
 
   closeMap() {
@@ -55,9 +59,10 @@ class App extends Component {
   }
 
   render() {
+    const { addresses, isFetching, succeeded } = this.props;
     const searchedAddress =
-      this.props.addresse && this.state.searchTerm
-        ? this.props.addresses[this.state.searchTerm]
+      addresses && this.state.searchTerm && addresses[this.state.searchTerm]
+        ? addresses[this.state.searchTerm]
         : {};
     const {
       lat,
@@ -81,8 +86,11 @@ class App extends Component {
           />
         </StyledSearchBarContainer>
 
+        {isFetching && <Spinner />}
+
         {this.state.openMap &&
-          this.props.succeeded && (
+          succeeded &&
+          !_.isEmpty(searchedAddress) && (
             <Map
               logradouro={logradouro}
               localidade={localidade}
@@ -111,7 +119,10 @@ App.propTypes = {
     bairro: PropTypes.string,
     uf: PropTypes.string,
     cep: PropTypes.string
-  })
+  }),
+  boundSearch: PropTypes.func.isRequired,
+  succeeded: PropTypes.bool.isRequired,
+  isFetching: PropTypes.bool.isRequired
 };
 
 const mapDispatchToProps = {
