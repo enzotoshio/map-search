@@ -47,7 +47,8 @@ class SearchBar extends React.Component {
   }
 
   handleChange(event) {
-    const isValidSearchTerm = event.target.value.match(/^[0-9]{5}-[0-9]{3}$/gm);
+    const isValidSearchTerm =
+      event.target.value.match(/^[0-9]{5}-[0-9]{3}$/gm) !== null;
 
     this.setState({ isValidSearchTerm });
 
@@ -82,9 +83,15 @@ class SearchBar extends React.Component {
           </Button>
         </StyledForm>
         {!isValidSearchTerm &&
-          searchTerm && <StyledErrorMessage>CEP inválido</StyledErrorMessage>}
+          !_.isEmpty(searchTerm) && (
+            <StyledErrorMessage className="error-message">
+              CEP inválido
+            </StyledErrorMessage>
+          )}
         {!_.isEmpty(errorMessage) && (
-          <StyledErrorMessage>{errorMessage}</StyledErrorMessage>
+          <StyledErrorMessage className="error-message">
+            {errorMessage}
+          </StyledErrorMessage>
         )}
       </div>
     );
